@@ -1,7 +1,6 @@
 import sqlite3, uuid, random
 import streamlit as st
 from datetime import datetime
-import time
 
 st.set_page_config(page_title="Studie Start", page_icon="▶️", layout="centered")
 
@@ -9,22 +8,6 @@ BOT_A_URL = "https://verhandlung.streamlit.app"
 BOT_B_URL = "https://verhandlung123.streamlit.app"
 DB_PATH = "assignments.sqlite3"
 
-# Optional: Auto-Redirect mit Countdown (Button bleibt Fallback)
-if AUTO_REDIRECT:
-    st.write("")
-    placeholder = st.empty()
-    for i in range(REDIRECT_SECONDS, 0, -1):
-        placeholder.markdown(
-            f'<div class="tiny">Automatische Weiterleitung in <b>{i}</b> Sekunden …</div>',
-            unsafe_allow_html=True
-        )
-        time.sleep(1)
-
-    # Redirect
-    st.markdown(
-        f"<meta http-equiv='refresh' content='0; url={next_url}'>",
-        unsafe_allow_html=True
-    )
 
 # ----------------------------
 # DB helpers
@@ -120,17 +103,15 @@ st.markdown(
         border-radius: 12px !important;
         font-weight: 700 !important;
       }
-      .tiny { color: rgba(49, 51, 63, 0.65); font-size: 0.9rem; margin-top: 6px; }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Kopfzeile: links Titel + Infos, rechts Info-Icon
 left, right = st.columns([0.88, 0.12], vertical_alignment="top")
 with left:
     st.title("Start der Studie")
-    st.markdown('<div class="subtitle">Du startest jetzt Teil 1. Danach wirst du zu Teil 2 weitergeleitet.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="subtitle">Klicke auf „Weiter“, um Teil 1 zu starten.</div>', unsafe_allow_html=True)
     st.markdown('<span class="badge">Teil 1 von 2</span> &nbsp; <span class="badge">Dauer: ca. 5–8 Min.</span>', unsafe_allow_html=True)
 
 with right:
@@ -139,35 +120,21 @@ with right:
             """
 **Disclaimer**
 
-- Die Verhandlung ist **fiktiv** – du kannst das iPad **nicht wirklich kaufen**.  
-- Es werden **nur anonyme, nicht zuweisbare Daten** gespeichert – ausschließlich zu Zwecken unseres **Bachelorprojekts**.
+- Die folgende Verhandlung ist ein **fiktives** Szenario im Rahmen einer wissenschaftlichen Studie. Es kommt kein realer Kaufvertrag zustande und es entstehen keine Kosten oder Verpflichtungen.
+- Es werden ausschließlich anonyme, nicht personenbezogene Daten gespeichert. Die erhobenen Daten lassen keine Rückschlüsse auf einzelne Personen zu und werden ausschließlich für wissenschaftliche Auswertungen im Rahmen eines Bachelorprojekts verwendet.
+- Die Teilnahme ist freiwillig.
             """
         )
 
 st.write("")
 
-# Card mit CTA
 st.markdown('<div class="card">', unsafe_allow_html=True)
-
-st.markdown("**Bitte lies kurz:**")
-st.markdown("- Verhandle so, als wäre es eine echte Situation.\n- Bitte schließe Teil 1 vollständig ab, bevor du den Tab schließt.")
-
-# dezente Meta-Infos (optional)
 st.markdown(f'<div class="meta">Teilnehmer-ID: {pid} · Reihenfolge: {order_code}</div>', unsafe_allow_html=True)
 
 st.write("")
 st.link_button(next_label, next_url, use_container_width=True)
-
-# Optional: Auto-Redirect mit Countdown (Button bleibt Fallback)
-if AUTO_REDIRECT:
-    st.write("")
-    placeholder = st.empty()
-    for i in range(REDIRECT_SECONDS, 0, -1):
-        placeholder.markdown(f'<div class="tiny">Automatische Weiterleitung in <b>{i}</b> Sekunden …</div>', unsafe_allow_html=True)
-        st.sleep(1)
-    # Redirect
-    st.markdown(f"<meta http-equiv='refresh' content='0; url={next_url}'>", unsafe_allow_html=True)
-
 st.markdown("</div>", unsafe_allow_html=True)
 
-st.caption("Hinweis: Bitte lasse das Browserfenster geöffnet, bis du beide Teile abgeschlossen hast.")
+st.caption("Du startest erst nach Klick auf „Weiter“.")
+st.caption("Vielen Dank für deine Teilnahme an unserer Studie.")
+
