@@ -1,6 +1,7 @@
 import sqlite3, uuid, random
 import streamlit as st
 from datetime import datetime
+import time
 
 st.set_page_config(page_title="Studie Start", page_icon="▶️", layout="centered")
 
@@ -8,9 +9,22 @@ BOT_A_URL = "https://verhandlung.streamlit.app"
 BOT_B_URL = "https://verhandlung123.streamlit.app"
 DB_PATH = "assignments.sqlite3"
 
-AUTO_REDIRECT = True   # <- optional: auf False setzen, wenn du keinen Auto-Redirect willst
-REDIRECT_SECONDS = 3   # <- Countdown-Dauer
+# Optional: Auto-Redirect mit Countdown (Button bleibt Fallback)
+if AUTO_REDIRECT:
+    st.write("")
+    placeholder = st.empty()
+    for i in range(REDIRECT_SECONDS, 0, -1):
+        placeholder.markdown(
+            f'<div class="tiny">Automatische Weiterleitung in <b>{i}</b> Sekunden …</div>',
+            unsafe_allow_html=True
+        )
+        time.sleep(1)
 
+    # Redirect
+    st.markdown(
+        f"<meta http-equiv='refresh' content='0; url={next_url}'>",
+        unsafe_allow_html=True
+    )
 
 # ----------------------------
 # DB helpers
