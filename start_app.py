@@ -123,7 +123,7 @@ with right:
 - Die folgende Verhandlung ist ein **fiktives** Szenario im Rahmen einer wissenschaftlichen Studie. Es kommt kein realer Kaufvertrag zustande und es entstehen keine Kosten oder Verpflichtungen.
 - Es werden ausschließlich anonyme, nicht personenbezogene Daten gespeichert. Die erhobenen Daten lassen keine Rückschlüsse auf einzelne Personen zu und werden ausschließlich für wissenschaftliche Auswertungen im Rahmen eines Bachelorprojekts verwendet.
 - Die Teilnahme ist freiwillig.
-- Es werden zwei Verhandlungen durchgeführt. Sobald die erste Verhanldung abgeschlossen ist (also nach Annahme oder Abbruch, erscheint ein Fragebogen, welcher auszufüllen ist.
+- Es werden zwei Verhandlungen durchgeführt. Sobald die erste Verhanldung abgeschlossen ist (also nach Annahme oder Abbruch), erscheint ein Fragebogen, welcher auszufüllen ist.
 - Nach abgesendetem Fragebogen erscheint "Weiter zu Teil 2", welches zum zweiten Fragebogen weiterleitet. Nach dem Beenden der zweiten Verhandlung und Absenden des zweiten Fragebogens ist das Experiment beendet und das Fenster kann geschlossen werden.
             """
         )
