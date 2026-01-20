@@ -67,7 +67,7 @@ if order_code == "AB":
 else:
     next_url = f"{BOT_B_URL}?pid={pid}&order=BA&step=1"
 
-next_label = "Weiter zu Teil 1"
+next_label = "Weiter zu Verhandlung 1"
 
 
 # ----------------------------
@@ -110,8 +110,8 @@ st.markdown(
 
 left, right = st.columns([0.88, 0.12], vertical_alignment="top")
 with left:
-    st.title("Start der Studie")
-    st.markdown('<div class="subtitle">Klicke auf „Weiter“, um Teil 1 zu starten.</div>', unsafe_allow_html=True)
+    st.title("Start der Verhandlung")
+    st.markdown('<div class="subtitle">Klicken Sie auf „Weiter zu Verhandlung 1“, um die erste Verhandlung zu starten.</div>', unsafe_allow_html=True)
     st.markdown('<span class="badge">Teil 1 von 2</span> &nbsp; <span class="badge">Dauer: ca. 5–8 Min.</span>', unsafe_allow_html=True)
 
 with right:
@@ -137,5 +137,5 @@ st.write("")
 st.link_button(next_label, next_url, use_container_width=True)
 st.markdown("</div>", unsafe_allow_html=True)
 
-st.caption("Du startest erst nach Klick auf „Weiter“.")
+st.caption("Sie starten erst nach Klick auf „Weiter zu Verhandlung 1“.")
 
