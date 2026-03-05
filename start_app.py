@@ -1,43 +1,34 @@
-import sqlite3, uuid, random
-import streamlit as st
+import uuid, random
 from datetime import datetime
+import streamlit as st
+from db_common import get_conn, init_db
 
 st.set_page_config(page_title="Studie Start", page_icon="▶️", layout="centered")
 
 BOT_A_URL = "https://verhandlung.streamlit.app"
 BOT_B_URL = "https://verhandlung123.streamlit.app"
-DB_PATH = "assignments.sqlite3"
 
 
 # ----------------------------
 # DB helpers
 # ----------------------------
-def init_db():
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-    c.execute("""
-        CREATE TABLE IF NOT EXISTS assignments (
-            pid TEXT PRIMARY KEY,
-            order_code TEXT,
-            created_ts TEXT
-        )
-    """)
-    conn.commit()
-    conn.close()
+def init_assignments_db():
+    init_db()  # erstellt alle Tabellen
 
 def get_or_create_assignment(pid: str):
-    init_db()
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-    c.execute("SELECT order_code FROM assignments WHERE pid = ?", (pid,))
-    row = c.fetchone()
+    init_assignments_db()
+    conn = get_conn()
+    cur = conn.cursor()
+
+    cur.execute("SELECT order_code FROM assignments WHERE pid = %s", (pid,))
+    row = cur.fetchone()
 
     if row:
         order_code = row[0]
     else:
         order_code = random.choice(["AB", "BA"])
-        c.execute(
-            "INSERT INTO assignments (pid, order_code, created_ts) VALUES (?, ?, ?)",
+        cur.execute(
+            "INSERT INTO assignments (pid, order_code, created_ts) VALUES (%s, %s, %s)",
             (pid, order_code, datetime.utcnow().isoformat())
         )
         conn.commit()
