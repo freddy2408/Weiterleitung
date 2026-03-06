@@ -60,8 +60,9 @@ else:
 
 next_label = "Weiter zu Verhandlung 1"
 
+
 # ----------------------------
-# 4) UI / Layout (kompakt, runde Reihe)
+# 4) UI / Layout (kompakt, eckige Cards)
 # ----------------------------
 st.markdown(
     """
@@ -81,7 +82,7 @@ st.markdown(
         margin-right: 8px; margin-bottom: 8px;
       }
 
-      /* Runde Flow-Reihe */
+      /* Flow-Reihe (eckige Cards) */
       .flowRow {
         display: flex;
         align-items: center;
@@ -97,13 +98,13 @@ st.markdown(
         flex-direction: column;
         align-items: center;
         gap: 6px;
-        min-width: 92px;
+        min-width: 105px;
       }
 
-      .circle {
-        width: 64px;
+      .cardStep {
+        width: 92px;
         height: 64px;
-        border-radius: 999px;
+        border-radius: 14px; /* wie Button/Cards */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -190,7 +191,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# (Pill "1-Blick-Ablauf" entfernt)
 st.markdown(
     """
     <span class="pill">Fiktives Szenario</span>
@@ -202,12 +202,12 @@ st.markdown(
 st.write("")
 st.markdown('<div class="wrap">', unsafe_allow_html=True)
 
-# Runde Reihe mit Pfeilen
+# Eckige Steps in einer Reihe
 st.markdown(
     """
     <div class="flowRow">
       <div class="node">
-        <div class="circle blue">
+        <div class="cardStep blue">
           <div class="num">1</div>
           <div class="icon">💬</div>
         </div>
@@ -217,7 +217,7 @@ st.markdown(
       <div class="arrow">➜</div>
 
       <div class="node">
-        <div class="circle green">
+        <div class="cardStep green">
           <div class="num">2</div>
           <div class="icon">📝</div>
         </div>
@@ -227,7 +227,7 @@ st.markdown(
       <div class="arrow">➜</div>
 
       <div class="node">
-        <div class="circle blue">
+        <div class="cardStep blue">
           <div class="num">3</div>
           <div class="icon">💬</div>
         </div>
@@ -237,7 +237,7 @@ st.markdown(
       <div class="arrow">➜</div>
 
       <div class="node">
-        <div class="circle green">
+        <div class="cardStep green">
           <div class="num">4</div>
           <div class="icon">📝</div>
         </div>
@@ -247,7 +247,7 @@ st.markdown(
       <div class="arrow">➜</div>
 
       <div class="node">
-        <div class="circle amber">
+        <div class="cardStep amber">
           <div class="num">5</div>
           <div class="icon">🏆</div>
         </div>
@@ -258,7 +258,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Scoreboard leicht stärker betonen (kurz)
+# Scoreboard-Hook (kurz)
 st.markdown(
     """
     <div class="hook">
@@ -274,25 +274,25 @@ st.markdown(
 
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-# Button-Text angepasst
+# Button-Text
 st.link_button("➡️ Weiter zu Verhandlung 1", next_url, use_container_width=True)
 
-# Mini-Hinweis (1 Zeile)
 st.caption("Hinweis: Die beiden Bots verhalten sich leicht unterschiedlich – das ist Absicht.")
 
-# Optional: Teilnehmerinfo sehr dezent
+# Optional: Teilnehmerinfo dezent
 st.markdown(
     f"<div class='smallmono'>Teilnehmer-ID: {pid} · Reihenfolge: {order_code}</div>",
     unsafe_allow_html=True
 )
 
-# Disclaimer aus der ersten Version an Stelle von "Kurzinfo"
-with st.expander("ℹ️ Kurzinfo (anonym, fiktiv, freiwillig)"):
+with st.expander("ℹ️ Disclaimer"):
     st.markdown(
         """
-- **Fiktives Szenario** im Rahmen einer Studie (kein realer Kaufvertrag, keine Kosten).
-- Es werden **anonyme, nicht personenbezogene** Daten gespeichert und wissenschaftlich ausgewertet.
-- Teilnahme ist **freiwillig**. Bitte führen Sie die Schritte **ohne Unterbrechung** durch.
+- Die folgende Verhandlung ist ein **fiktives** Szenario im Rahmen einer wissenschaftlichen Studie. Es kommt kein realer Kaufvertrag zustande und es entstehen keine Kosten oder Verpflichtungen.
+- Es werden ausschließlich anonyme, nicht personenbezogene Daten gespeichert. Die erhobenen Daten lassen keine Rückschlüsse auf einzelne Personen zu und werden ausschließlich für wissenschaftliche Auswertungen im Rahmen eines Bachelorprojekts verwendet.
+- Die Teilnahme ist freiwillig.
+- Es werden zwei Verhandlungen durchgeführt. Sobald die erste Verhanldung abgeschlossen ist (also nach Annahme oder Abbruch), erscheint ein Fragebogen, welcher auszufüllen ist.
+- Nach abgesendetem Fragebogen erscheint "Weiter zu Teil 2", welches zur zweiten Verhandlung weiterleitet. Nach dem Beenden der zweiten Verhandlung und Absenden des zweiten Fragebogens ist das Experiment beendet und das Fenster kann geschlossen werden.
         """
     )
 
