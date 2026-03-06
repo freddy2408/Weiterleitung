@@ -61,21 +61,6 @@ else:
 next_label = "Weiter zu Verhandlung 1"
 
 
-chat_txt = export_all_chats_to_txt(bot_variant=bot_variant_for_queries)
-
-
-
-import uuid, random
-from datetime import datetime
-import streamlit as st
-from db_common import get_conn, init_db
-
-st.set_page_config(page_title="Studie Start", page_icon="▶️", layout="centered")
-
-BOT_A_URL = "https://verhandlung.streamlit.app"
-BOT_B_URL = "https://verhandlung123.streamlit.app"
-
-
 # ----------------------------
 # DB helpers
 # ----------------------------
